@@ -1,7 +1,8 @@
+from os.path import isfile
+import csv
+
+
 class Book:
-    """
-    This class stores information about book.
-    """
 
     def __init__(self, name: str, author: str, year: int, genre: str, pages: int, read=False, rate=None):
         self.name = name
@@ -47,3 +48,26 @@ class Book:
             scale = scale
         self.rate = int(scale)
 
+
+class BooksDatabase:
+
+    def __init__(self, csv_path: str = None):
+        self.database_path = csv_path
+        self.database = []
+
+        # Load database from disc if possible
+        if isfile(self.database_path):
+            with open(self.database_path, newline="", encoding="utf-8") as db_file:
+                db_reader = csv.reader(db_file)
+                next(db_reader)
+                self.database = [Book(*book) for book in db_reader]
+
+    def save_db(self):
+        pass
+
+# book = Book('Solaris', 'Stanislaw Lem', 1961, 'sci-fi', 340)
+# print(book)
+# book.mark_as_read()
+# print(book)
+# book.mark_as_unread()
+# print(book)
