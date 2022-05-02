@@ -4,8 +4,8 @@ import csv
 
 class Book:
 
-    def __init__(self, name: str, author: str, year: int, genre: str, pages: int, read=False, rate=None):
-        self.name = name
+    def __init__(self, title: str, author: str, year: int, genre: str, pages: int, read=False, rate=None):
+        self.title = title
         self.author = author
         self.year = year
         self.genre = genre
@@ -15,14 +15,17 @@ class Book:
 
     def __str__(self):
         if self.read:
-            return "{}, {}. Year: {}, Genre: {}, Rate: {}".format(self.name, self.author, self.year,
+            return '{}, {}. Year: {}, Genre: {}, Rate: {}'.format(self.title, self.author, self.year,
                                                                   self.genre, self.rate)
         else:
-            return "{}, {}. Year: {}, Genre: {}, Read: {}".format(self.name, self.author, self.year,
+            return '{}, {}. Year: {}, Genre: {}, Read: {}'.format(self.title, self.author, self.year,
                                                                   self.genre, self.read)
 
     def __repr__(self):
-        return "Book: {}".format(self.name)
+        return 'Book: {}'.format(self.title)
+
+    def __iter__(self):
+        return iter([self.title, self.author, self.year, self.genre, self.pages, self.read, self.rate])
 
     def mark_as_read(self):
         """
@@ -43,7 +46,7 @@ class Book:
         Rating the book in the scale 1-5
         """
         if scale is None:
-            scale = input(f"How did you enjoy {self.name} in the scale from 1 to 5? ")
+            scale = input(f'How did you enjoy {self.title} in the scale from 1 to 5? ')
         else:
             scale = scale
         self.rate = int(scale)
@@ -57,13 +60,20 @@ class BooksDatabase:
 
         # Load database from disc if possible
         if isfile(self.database_path):
-            with open(self.database_path, newline="", encoding="utf-8") as db_file:
+            with open(self.database_path, newline='', encoding='utf-8') as db_file:
                 db_reader = csv.reader(db_file)
                 next(db_reader)
                 self.database = [Book(*book) for book in db_reader]
 
     def save_db(self):
-        pass
+        """
+        Saving books database to csv.
+        """
+        header = ['Title', 'Author', 'Year', 'Genre', 'Pages', 'Read', 'Rate']
+        with open(self.database_path, 'w', newline='', encoding='utf-8') as db_file:
+            db_writer = csv.writer(db_file)
+            db_writer.writerow(header)
+            db_writer.writerow(self.database)
 
 # book = Book('Solaris', 'Stanislaw Lem', 1961, 'sci-fi', 340)
 # print(book)
