@@ -30,6 +30,13 @@ class Book:
         self.read = True
         self.rate_book()
 
+    def mark_as_unread(self):
+        """
+        Marking book's status as unread.
+        """
+        self.read = False
+        self.rate = None
+
     def rate_book(self, scale=None):
         """
         Rating the book in the scale 1-5
