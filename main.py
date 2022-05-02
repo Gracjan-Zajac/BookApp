@@ -72,7 +72,7 @@ class BooksDatabase:
         """
         Saving books database to csv.
         """
-        header = ['Title', 'Author', 'Year', 'Genre', 'Pages', 'Read', 'Rate']
+        header = ['Title', 'Author', 'Year', 'Genre', 'Pages', 'Read', 'Rate (1-5)']
         with open(self.database_path, 'w', newline='', encoding='utf-8') as db_file:
             db_writer = csv.writer(db_file)
             db_writer.writerow(header)
@@ -81,9 +81,12 @@ class BooksDatabase:
 
     def update_db(self, book):
         """
-        Updating database with a new book.
+        Updating database with a new Book class instance.
         """
-        self.database.append(book)
+        if isinstance(book, Book):
+            self.database.append(book)
+        else:
+            print('You can add only a Book class instance to the database.')
 
 # book = Book('Solaris', 'Stanislaw Lem', 1961, 'sci-fi', 340)
 # print(book)
