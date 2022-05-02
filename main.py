@@ -65,6 +65,9 @@ class BooksDatabase:
                 next(db_reader)
                 self.database = [Book(*book) for book in db_reader]
 
+    def __str__(self):
+        return str(self.database)
+
     def save_db(self):
         """
         Saving books database to csv.
@@ -73,7 +76,14 @@ class BooksDatabase:
         with open(self.database_path, 'w', newline='', encoding='utf-8') as db_file:
             db_writer = csv.writer(db_file)
             db_writer.writerow(header)
-            db_writer.writerow(self.database)
+            for book in self.database:
+                db_writer.writerow(book)
+
+    def update_db(self, book):
+        """
+        Updating database with a new book.
+        """
+        self.database.append(book)
 
 # book = Book('Solaris', 'Stanislaw Lem', 1961, 'sci-fi', 340)
 # print(book)
