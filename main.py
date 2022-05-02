@@ -20,6 +20,9 @@ class Book:
             return "{}, {}. Year: {}, Genre: {}, Read: {}".format(self.name, self.author, self.year,
                                                                   self.genre, self.read)
 
+    def __repr__(self):
+        return "Book: {}".format(self.name)
+
     def mark_as_read(self):
         """
         Marking book's status as read.
@@ -37,8 +40,3 @@ class Book:
             scale = scale
         self.rate = int(scale)
 
-
-book = Book('Solaris', 'Stanislaw Lem', 1961, 'sci-fi', 340)
-print(book)
-book.mark_as_read()
-print(book)
