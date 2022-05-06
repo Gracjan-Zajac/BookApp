@@ -1,5 +1,4 @@
 from os.path import isfile
-import csv
 import json
 
 
@@ -72,7 +71,7 @@ class BooksDatabase:
         """
         Saves books database to json.
         """
-        database = json.dumps(self.books, indent=2)
+        database = json.dumps(self.books, indent=2, default=lambda x: x.__dict__)
 
         with open(self.database_path, 'w', encoding='utf-8') as db_file:
             db_file.write(database)
@@ -111,5 +110,4 @@ class BooksDatabase:
 
 
 db = BooksDatabase('my_books.json')
-db.count()
-
+print(db.books[-1].rate)

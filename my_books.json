@@ -1,7 +1,7 @@
 [
   {
     "title": "Solaris",
-    "author": "Stanisław Lem",
+    "author": "Stanis\u0142aw Lem",
     "year": 1961,
     "genre": "sci-fi",
     "pages": 340,
@@ -9,7 +9,7 @@
     "rate": 4
   },
   {
-    "title": "O Miłości",
+    "title": "O Mi\u0142o\u015bci",
     "author": "Charles Bukowski,",
     "year": 2018,
     "genre": "poems",
@@ -27,11 +27,20 @@
     "rate": null
   },
   {
-    "title": "Le Locataire chimérique",
+    "title": "Le Locataire chim\u00e9rique",
     "author": "Roland Topor",
     "year": 1964,
     "genre": "thriller",
     "pages": 200,
+    "read": false,
+    "rate": null
+  },
+  {
+    "title": "In Cold Blood",
+    "author": "Truman Capote",
+    "year": 1966,
+    "genre": "non-fiction",
+    "pages": 343,
     "read": false,
     "rate": null
   }
