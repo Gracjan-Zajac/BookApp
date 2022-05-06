@@ -29,21 +29,21 @@ class Book:
 
     def mark_as_read(self):
         """
-        Marking book's status as read.
+        Marks book's status as read and moves to rate_book function.
         """
         self.read = True
         self.rate_book()
 
     def mark_as_unread(self):
         """
-        Marking book's status as unread.
+        Marks book's status as unread and sets a rate to None.
         """
         self.read = False
         self.rate = None
 
     def rate_book(self, scale=None):
         """
-        Rating the book in the scale 1-5
+        Rates the book in the scale 1-5
         """
         if scale is None:
             scale = input(f'How did you enjoy {self.title} in the scale from 1 to 5? ')
@@ -70,7 +70,7 @@ class BooksDatabase:
 
     def save_db(self):
         """
-        Saving books database to csv.
+        Saves books database to csv.
         """
         header = ['Title', 'Author', 'Year', 'Genre', 'Pages', 'Read', 'Rate (1-5)']
         with open(self.database_path, 'w', newline='', encoding='utf-8') as db_file:
@@ -79,18 +79,22 @@ class BooksDatabase:
             for book in self.database:
                 db_writer.writerow(book)
 
-    def update_db(self, book):
+    def add_new_book(self, title=input('Title: '), author=input('Author: '), year=int(input('Year: ')),
+                     genre=input('Genre: '), pages=int(input('Pages: '))):
         """
-        Updating database with a new Book class instance.
+        Creates a new Book class instance and adds it to the database.
         """
-        if isinstance(book, Book):
-            self.database.append(book)
-        else:
-            print('You can add only a Book class instance to the database.')
+        new_book = Book(title, author, year, genre, pages)
+        self.database.append(new_book)
 
-# book = Book('Solaris', 'Stanislaw Lem', 1961, 'sci-fi', 340)
-# print(book)
-# book.mark_as_read()
-# print(book)
-# book.mark_as_unread()
-# print(book)
+    def count(self):
+        """
+        Counts how many books and pages user has read.
+        """
+        pass
+
+
+db = BooksDatabase('my_books.csv')
+db.add_new_book()
+db.save_db()
+
