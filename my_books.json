@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Solaris",
+    "author": "Stanisław Lem",
+    "year": 1961,
+    "genre": "sci-fi",
+    "pages": 340,
+    "read": true,
+    "rate": 4
+  },
+  {
+    "title": "O Miłości",
+    "author": "Charles Bukowski,",
+    "year": 2018,
+    "genre": "poems",
+    "pages": 130,
+    "read": true,
+    "rate": 4
+  },
+  {
+    "title": "East of Eden",
+    "author": "John Steinbeck",
+    "year": 1952,
+    "genre": "drama",
+    "pages": 736,
+    "read": false,
+    "rate": null
+  },
+  {
+    "title": "Le Locataire chimérique",
+    "author": "Roland Topor",
+    "year": 1964,
+    "genre": "thriller",
+    "pages": 200,
+    "read": false,
+    "rate": null
+  }
+]

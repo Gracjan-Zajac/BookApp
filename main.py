@@ -1,5 +1,6 @@
 from os.path import isfile
 import csv
+import json
 
 
 class Book:
@@ -54,47 +55,61 @@ class Book:
 
 class BooksDatabase:
 
-    def __init__(self, csv_path: str = None):
-        self.database_path = csv_path
-        self.database = []
+    def __init__(self, json_path: str = None):
+        self.database_path = json_path
+        self.books = []
 
         # Load database from disc if possible
         if isfile(self.database_path):
             with open(self.database_path, newline='', encoding='utf-8') as db_file:
-                db_reader = csv.reader(db_file)
-                next(db_reader)
-                self.database = [Book(*book) for book in db_reader]
+                db_reader = json.load(db_file)
+                self.books = [Book(**book) for book in db_reader]
 
     def __str__(self):
-        return str(self.database)
+        return str(self.books)
 
     def save_db(self):
         """
-        Saves books database to csv.
+        Saves books database to json.
         """
-        header = ['Title', 'Author', 'Year', 'Genre', 'Pages', 'Read', 'Rate (1-5)']
-        with open(self.database_path, 'w', newline='', encoding='utf-8') as db_file:
-            db_writer = csv.writer(db_file)
-            db_writer.writerow(header)
-            for book in self.database:
-                db_writer.writerow(book)
+        database = json.dumps(self.books, indent=2)
 
-    def add_new_book(self, title=input('Title: '), author=input('Author: '), year=int(input('Year: ')),
-                     genre=input('Genre: '), pages=int(input('Pages: '))):
+        with open(self.database_path, 'w', encoding='utf-8') as db_file:
+            db_file.write(database)
+
+    def add_new_book(self):
         """
         Creates a new Book class instance and adds it to the database.
         """
+        title = input('Title: ')
+        author = input('Author: ')
+        year = int(input('Year: '))
+        genre = input('Genre: ')
+        pages = int(input('Pages: '))
+
         new_book = Book(title, author, year, genre, pages)
-        self.database.append(new_book)
+        self.books.append(new_book)
 
     def count(self):
         """
         Counts how many books and pages user has read.
         """
-        pass
+        books_counter = 0
+        pages_counter = 0
+
+        for book in self.books:
+            if book.read:
+                books_counter += 1
+                pages_counter += int(book.pages)
+
+        if books_counter == 0:
+            print("You haven't read any book yet.")
+        elif books_counter == 1:
+            print(f'You have read {books_counter} book with {pages_counter} pages in total. Good job!')
+        else:
+            print(f'You have read {books_counter} books with {pages_counter} pages in total. Congratulations!')
 
 
-db = BooksDatabase('my_books.csv')
-db.add_new_book()
-db.save_db()
+db = BooksDatabase('my_books.json')
+db.count()
 
