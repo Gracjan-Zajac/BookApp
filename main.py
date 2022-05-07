@@ -123,3 +123,4 @@ class BooksDatabase:
 
 db = BooksDatabase('my_books.json')
 db.show_read_books()
+db.count()
