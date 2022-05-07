@@ -32,7 +32,7 @@ class Book:
         Marks book's status as read and moves to rate_book function.
         """
         self.read = True
-        self.rate_book()
+        self.add_rate()
 
     def mark_as_unread(self):
         """
@@ -41,15 +41,18 @@ class Book:
         self.read = False
         self.rate = None
 
-    def rate_book(self, scale=None):
+    def add_rate(self):
         """
         Rates the book in the scale 1-5
         """
-        if scale is None:
-            scale = input(f'How did you enjoy {self.title} in the scale from 1 to 5? ')
-        else:
-            scale = scale
-        self.rate = int(scale)
+        while True:
+            scale = int(input(f'How did you enjoy {self.title} in the scale from 1 to 5? '))
+            if scale > 5 or scale < 1:
+                print('Please rate in the scale from 1 to 5')
+            else:
+                break
+
+        self.rate = scale
 
 
 class BooksDatabase:
@@ -99,7 +102,7 @@ class BooksDatabase:
         for book in self.books:
             if book.read:
                 books_counter += 1
-                pages_counter += int(book.pages)
+                pages_counter += book.pages
 
         if books_counter == 0:
             print("You haven't read any book yet.")
@@ -107,7 +110,3 @@ class BooksDatabase:
             print(f'You have read {books_counter} book with {pages_counter} pages in total. Good job!')
         else:
             print(f'You have read {books_counter} books with {pages_counter} pages in total. Congratulations!')
-
-
-db = BooksDatabase('my_books.json')
-print(db.books[-1].rate)
