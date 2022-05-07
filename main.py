@@ -110,3 +110,16 @@ class BooksDatabase:
             print(f'You have read {books_counter} book with {pages_counter} pages in total. Good job!')
         else:
             print(f'You have read {books_counter} books with {pages_counter} pages in total. Congratulations!')
+
+    def show_read_books(self):
+        """
+        Prints all books where read = True
+        """
+        print('Books you have read:')
+        for book in self.books:
+            if book.read:
+                print(f'- {book}')
+
+
+db = BooksDatabase('my_books.json')
+db.show_read_books()
