@@ -1,3 +1,4 @@
+from goodreads import GoodReads
 from os.path import isfile
 import json
 
@@ -53,6 +54,17 @@ class Book:
                 break
 
         self.rate = scale
+
+    def print_info(self):
+        """
+        Prints book's description from GoodReads website.
+        """
+        book = '{}, {}'.format(self.title, self.author)
+        goodreads = GoodReads()
+        description = goodreads.get_info(book)
+        print(book)
+        print('-----')
+        print(description)
 
 
 class BooksDatabase:
@@ -122,5 +134,5 @@ class BooksDatabase:
 
 
 db = BooksDatabase('my_books.json')
-db.show_read_books()
-db.count()
+book = db.books[3]
+book.print_info()

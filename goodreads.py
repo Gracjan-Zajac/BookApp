@@ -2,6 +2,7 @@ from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+import os
 
 GOODREADS_FRONTPAGE = 'https://www.goodreads.com/'
 
@@ -32,6 +33,8 @@ class GoodReads:
         more = self.browser.find_element(By.XPATH, "//*[contains(text(), '...more')]")
         more.click()
 
-        description = self.browser.find_element(By.ID, 'description')
+        description = self.browser.find_element(By.ID, 'description').text
+        description = os.linesep.join([s for s in description.splitlines() if s])
+        description = description.replace('(less)', "")
 
-        return description.text.replace('(less)', "")
+        return description
