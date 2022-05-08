@@ -43,7 +43,7 @@ class GoodReads:
 
     def get_quote(self):
         """
-        Takes a random quote from goodreads.com and returns it.
+        Returns a random quote from goodreads.com.
         """
         quotes = self.browser.find_element(By.ID, 'quotes')
         quotes_elements = quotes.find_elements(By.CLASS_NAME, 'quoteText')
@@ -59,9 +59,10 @@ class GoodReads:
             quote_and_author = f'{raw_quote}\n- {author}'
             quotes_list.append(quote_and_author)
 
-        print(quotes_list[3])
+        random_quote = random.choice(quotes_list)
 
+        return random_quote
 
 
 test = GoodReads()
-test.get_quote()
+print(test.get_quote())

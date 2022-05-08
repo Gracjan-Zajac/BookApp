@@ -132,6 +132,16 @@ class BooksDatabase:
             if book.read:
                 print(f'- {book}')
 
+    @staticmethod
+    def print_quote():
+        """
+        Prints a random quote from GoodReads website.
+        """
+        goodreads = GoodReads()
+        quote = goodreads.get_quote()
+        print("Your today's quote is:")
+        print(quote)
+
     def pick_book(self):
         """
         Returns a random book from books where read = False
@@ -140,5 +150,4 @@ class BooksDatabase:
 
 
 db = BooksDatabase('my_books.json')
-book = db.books[0]
-book.print_info()
+db.print_quote()
