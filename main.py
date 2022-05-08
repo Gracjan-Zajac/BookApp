@@ -1,6 +1,7 @@
 from goodreads import GoodReads
 from os.path import isfile
 import json
+import random
 
 
 class Book:
@@ -146,8 +147,11 @@ class BooksDatabase:
         """
         Returns a random book from books where read = False
         """
-        pass
+        to_read_list = [book for book in self.books if not book.read]
+        book_to_read = random.choice(to_read_list)
+        print('Next book you should read is:')
+        print('{} by {}'.format(book_to_read.title, book_to_read.author))
 
 
 db = BooksDatabase('my_books.json')
-db.print_quote()
+db.pick_book()

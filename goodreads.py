@@ -62,7 +62,3 @@ class GoodReads:
         random_quote = random.choice(quotes_list)
 
         return random_quote
-
-
-test = GoodReads()
-print(test.get_quote())
