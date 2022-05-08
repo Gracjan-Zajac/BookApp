@@ -132,7 +132,13 @@ class BooksDatabase:
             if book.read:
                 print(f'- {book}')
 
+    def pick_book(self):
+        """
+        Returns a random book from books where read = False
+        """
+        pass
+
 
 db = BooksDatabase('my_books.json')
-book = db.books[3]
+book = db.books[0]
 book.print_info()
