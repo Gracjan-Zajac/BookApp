@@ -151,7 +151,3 @@ class BooksDatabase:
         book_to_read = random.choice(to_read_list)
         print('Next book you should read is:')
         print('{} by {}'.format(book_to_read.title, book_to_read.author))
-
-
-db = BooksDatabase('my_books.json')
-db.pick_book()
