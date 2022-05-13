@@ -34,7 +34,7 @@ class Book:
         Marks book's status as read and moves to rate_book function.
         """
         self.read = True
-        self.add_rate()
+        # self.add_rate()
 
     def mark_as_unread(self):
         """
@@ -43,27 +43,22 @@ class Book:
         self.read = False
         self.rate = None
 
-    def add_rate(self):
+    def add_rate(self, scale):
         """
         Rates the book in the scale 1-5
         """
-        while True:
-            scale = int(input(f'How did you enjoy {self.title} in the scale from 1 to 5? '))
-            if scale > 5 or scale < 1:
-                print('Please rate in the scale from 1 to 5')
-            else:
-                break
-
-        self.rate = scale
+        if scale > 5 or scale < 1:
+            raise ValueError("Please rate in the scale from 1 to 5")
+        else:
+            self.rate = scale
 
     def print_info(self):
         """
         Prints book's description from GoodReads website.
         """
-        book = '{}, {}'.format(self.title, self.author)
         goodreads = GoodReads()
-        description = goodreads.get_info(book)
-        print(book)
+        description = goodreads.get_info(self.title)
+        print(self.title + ', ' + self.author)
         print('-----')
         print(description)
 
@@ -92,18 +87,28 @@ class BooksDatabase:
         with open(self.database_path, 'w', encoding='utf-8') as db_file:
             db_file.write(database)
 
-    def add_new_book(self):
-        """
-        Creates a new Book class instance and adds it to the database.
-        """
+    @staticmethod
+    def get_book_details():
         title = input('Title: ')
         author = input('Author: ')
         year = int(input('Year: '))
         genre = input('Genre: ')
         pages = int(input('Pages: '))
 
+        return title, author, year, genre, pages
+
+    def add_new_book(self, title, author, year, genre, pages):
+        """
+        Creates a new Book class instance and adds it to the database.
+        """
         new_book = Book(title, author, year, genre, pages)
         self.books.append(new_book)
+
+    def delete_book(self, book):
+        """
+        Deletes a book from database.
+        """
+        self.books.remove(book)
 
     def count(self):
         """
@@ -151,3 +156,4 @@ class BooksDatabase:
         book_to_read = random.choice(to_read_list)
         print('Next book you should read is:')
         print('{} by {}'.format(book_to_read.title, book_to_read.author))
+
