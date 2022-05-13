@@ -43,6 +43,7 @@ while True:
         print('\nWhat book do you want to add?\n')
         details = database.get_book_details()
         database.add_new_book(*details)
+        database.save()
         print(f'\n{details[0]} is now added to your list!\n')
 
         time.sleep(3)
@@ -125,7 +126,8 @@ while True:
         print('\nSee you again!')
         exit()
     else:
-        print('Invalid option! Please enter a number between 1 and 12')
+        print('Invalid option! Please enter a number between 1 and 12\n')
+        time.sleep(3)
 
 # details = b.get_book_details()
 # b.add_new_book(details[0], details[1], details[2], details[3], details[4])

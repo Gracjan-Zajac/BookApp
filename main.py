@@ -78,7 +78,7 @@ class BooksDatabase:
     def __str__(self):
         return str(self.books)
 
-    def save_db(self):
+    def save(self):
         """
         Saves books database to json.
         """

@@ -43,5 +43,14 @@
     "pages": 343,
     "read": false,
     "rate": null
+  },
+  {
+    "title": "Blood Meridian",
+    "author": "Cormac McCarthy",
+    "year": 1985,
+    "genre": "western",
+    "pages": 337,
+    "read": false,
+    "rate": null
   }
 ]
