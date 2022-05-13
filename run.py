@@ -1,6 +1,7 @@
 from main import Book, BooksDatabase
+import time
 
-b = BooksDatabase('my_books.json')
+database = BooksDatabase('my_books.json')
 
 menu_options = {
     1: 'Show my books',
@@ -24,16 +25,46 @@ def print_menu():
 
 
 while True:
-    print('Welcome in BookApp!\n')
+    print('This is BookApp!\n')
     print_menu()
     option = int(input('\nSelect an option: '))
 
     if option == 1:
-        pass
+        print('\nThis is your book collection:\n')
+        for count, book in enumerate(database.books):
+            print(f'{count + 1}. {book}\n')
+
+        time.sleep(3)
+
     elif option == 2:
-        pass
+        print('\nWhat book do you want to add?\n')
+        details = database.get_book_details()
+        database.add_new_book(details[0], details[1], details[2], details[3], details[4])
+        print(f'\n{details[0]} is now added to your list!\n')
+
+        time.sleep(3)
+
     elif option == 3:
-        pass
+        while True:
+            print("\nWhich book do you want to delete (to quit press '0'): \n")
+
+            for count, book in enumerate(database.books):
+                print(f'{count + 1}. {book.title}\n')
+
+            try:
+                user_choice = int(input('Your choice: '))
+                if user_choice == 0:
+                    break
+                elif user_choice != 0:
+                    book_to_delete = database.books[user_choice - 1]
+                    print(f'{book_to_delete.title} has been deleted!\n')
+                    database.books.remove(book_to_delete)
+                    time.sleep(3)
+                    break
+            except ValueError:
+                print('Invalid option! Please select a correct number.')
+                
+                
     elif option == 4:
         pass
     elif option == 5:
@@ -51,8 +82,10 @@ while True:
     elif option == 11:
         pass
     elif option == 12:
-        print('See you!')
+        print('\nSee you again!')
         exit()
+    else:
+        print('Invalid option! Please enter a number between 1 and 12')
 
 # details = b.get_book_details()
 # b.add_new_book(details[0], details[1], details[2], details[3], details[4])
