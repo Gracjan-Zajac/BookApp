@@ -24,6 +24,11 @@ def print_menu():
         print(f'{key}. {menu_options[key]}')
 
 
+def show_enumerate_books():
+    for count, book in enumerate(database.books):
+        print(f'{count + 1}. {book}\n')
+
+
 while True:
     print('This is BookApp!\n')
     print_menu()
@@ -31,9 +36,7 @@ while True:
 
     if option == 1:
         print('\nThis is your book collection:\n')
-        for count, book in enumerate(database.books):
-            print(f'{count + 1}. {book}\n')
-
+        show_enumerate_books()
         time.sleep(3)
 
     elif option == 2:
@@ -47,10 +50,7 @@ while True:
     elif option == 3:
         while True:
             print("\nWhich book do you want to delete (to quit press '0'): \n")
-
-            for count, book in enumerate(database.books):
-                print(f'{count + 1}. {book.title}\n')
-
+            show_enumerate_books()
             try:
                 user_choice = int(input('Your choice: '))
                 if user_choice == 0:
@@ -68,10 +68,7 @@ while True:
     elif option == 4:
         while True:
             print("\nWhich book did you finished reading (to quit press '0')?: \n")
-
-            for count, book in enumerate(database.books):
-                print(f'{count + 1}. {book.title}\n')
-
+            show_enumerate_books()
             try:
                 user_choice = int(input('Your choice: '))
                 if user_choice == 0:
@@ -93,10 +90,7 @@ while True:
     elif option == 5:
         while True:
             print("\nWhich book do you want to mark as unread (to quit press '0')?: \n")
-
-            for count, book in enumerate(database.books):
-                print(f'{count + 1}. {book.title}\n')
-
+            show_enumerate_books()
             try:
                 user_choice = int(input('Your choice: '))
                 if user_choice == 0:
