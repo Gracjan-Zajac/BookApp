@@ -34,7 +34,10 @@ while True:
     print_menu()
     try:
         option = int(input('\nSelect an option: '))
-
+    except ValueError:
+        print('Invalid option! Please enter a number between 1 and 12\n')
+        time.sleep(2)
+    else:
         if option == 1:
             print('\nThis is your book collection:\n')
             show_enumerate_books()
@@ -47,7 +50,7 @@ while True:
             database.save()
             print(f'\n{details[0]} is now added to your list!\n')
 
-            time.sleep(3)
+            time.sleep(2)
 
         elif option == 3:
             while True:
@@ -61,11 +64,11 @@ while True:
                         book_to_delete = database.books[user_choice - 1]
                         print(f'{book_to_delete.title} has been deleted!\n')
                         database.books.remove(book_to_delete)
-                        time.sleep(3)
+                        time.sleep(2)
                         break
-                except ValueError:
+                except (ValueError, IndexError):
                     print('Invalid option! Please select a correct number.')
-                    time.sleep(3)
+                    time.sleep(2)
 
         elif option == 4:
             while True:
@@ -79,15 +82,15 @@ while True:
                         book = database.books[user_choice - 1]
                         if book.read:
                             print(f'You have read {book.title} before.')
-                            time.sleep(3)
+                            time.sleep(2)
                         else:
                             book.mark_as_read()
                             print(f'{book.title} has been marked as read.\n')
-                            time.sleep(3)
+                            time.sleep(2)
                             break
-                except ValueError:
+                except (ValueError, IndexError):
                     print('Invalid option! Please select a correct number.')
-                    time.sleep(3)
+                    time.sleep(2)
 
         elif option == 5:
             while True:
@@ -102,17 +105,32 @@ while True:
                         if book.read:
                             book.mark_as_unread()
                             print(f'{book.title} has been marked as unread.\n')
-                            time.sleep(3)
+                            time.sleep(2)
                             break
                         else:
                             print(f'You have not read {book.title} before.')
-                            time.sleep(3)
-                except ValueError:
+                            time.sleep(2)
+                except (ValueError, IndexError):
                     print('Invalid option! Please select a correct number.')
                     time.sleep(3)
 
         elif option == 6:
-            pass
+            while True:
+                print("\nWhich book do you want to rate (to quit press '0')?: \n")
+                show_enumerate_books()
+
+                try:
+                    user_choice = int(input('Your choice: '))
+                    if user_choice == 0:
+                        break
+                    elif user_choice != 0:
+                        pass
+                    else:
+                        pass
+                except (ValueError, IndexError):
+                    print('Invalid option! Please select a correct number.')
+                    time.sleep(2)
+
         elif option == 7:
             pass
         elif option == 8:
@@ -128,11 +146,7 @@ while True:
             exit()
         else:
             print('Invalid option! Please enter a number between 1 and 12\n')
-            time.sleep(3)
-
-    except ValueError:
-        print('Invalid option! Please enter a number between 1 and 12\n')
-        time.sleep(3)
+            time.sleep(2)
 
 # details = b.get_book_details()
 # b.add_new_book(details[0], details[1], details[2], details[3], details[4])
