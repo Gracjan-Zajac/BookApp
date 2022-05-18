@@ -41,7 +41,6 @@ while True:
             print('\nThis is your book collection:\n')
             show_enumerate_books()
             time.sleep(3)
-
         elif option == 2:
             print('\nWhat book do you want to add?\n')
             details = database.get_book_details()
@@ -50,7 +49,6 @@ while True:
             print(f'\n{details[0]} is now added to your list!\n')
 
             time.sleep(2)
-
         elif option == 3:
             while True:
                 print("\nWhich book do you want to delete (to quit press '0'): \n")
@@ -68,7 +66,6 @@ while True:
                 except (ValueError, IndexError):
                     print('Invalid option! Please select a correct number.')
                     time.sleep(2)
-
         elif option == 4:
             while True:
                 print("\nWhich book did you finished reading (to quit press '0')?: \n")
@@ -90,7 +87,6 @@ while True:
                 except (ValueError, IndexError):
                     print('Invalid option! Please select a correct number.')
                     time.sleep(2)
-
         elif option == 5:
             while True:
                 print("\nWhich book do you want to mark as unread (to quit press '0')?: \n")
@@ -112,7 +108,6 @@ while True:
                 except (ValueError, IndexError):
                     print('Invalid option! Please select a correct number.')
                     time.sleep(2)
-
         elif option == 6:
             while True:
                 print("\nWhich book do you want to rate (to quit press '0')?: \n")
@@ -132,18 +127,33 @@ while True:
                 except (ValueError, IndexError):
                     print('Invalid option! Please select a correct number.')
                     time.sleep(2)
-
         elif option == 7:
-            pass
+            database.count()
+            print('')
+            time.sleep(3)
         elif option == 8:
-            pass
+            database.pick_book()
+            print('')
+            time.sleep(3)
         elif option == 9:
-            pass
+            database.print_quote()
+            print('')
+            time.sleep(3)
         elif option == 10:
-            pass
+            database.save()
         elif option == 11:
-            print('\nSee you again!')
-            exit()
+            while True:
+                save = input('Do you want to save your database before leaving? [y/n]? ')
+                if save.lower() == 'y':
+                    database.save()
+                    print('\nYour database has been saved!')
+                    print('\nSee you again :)')
+                    exit()
+                elif save.lower() == 'n':
+                    print('\nSee you again :)')
+                    exit()
+                else:
+                    print('Invalid option!')
         else:
             print('Invalid option! Please enter a number between 1 and 12\n')
             time.sleep(2)

@@ -50,6 +50,15 @@
     "year": 1985,
     "genre": "western",
     "pages": 337,
+    "read": true,
+    "rate": 3
+  },
+  {
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "year": 1960,
+    "genre": "novel",
+    "pages": 281,
     "read": false,
     "rate": null
   }
