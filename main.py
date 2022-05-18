@@ -117,10 +117,10 @@ class BooksDatabase:
         """
         Prints all books where read = True
         """
-        print('Books you have read:')
+        print('Books you have read so far:')
         for book in self.books:
             if book.read:
-                print(f'- {book}')
+                print(f'- {book}\n')
 
     @staticmethod
     def print_quote():

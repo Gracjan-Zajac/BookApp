@@ -10,11 +10,12 @@ menu_options = {
     4: 'Mark as read',
     5: 'Mark as unread',
     6: 'Rate a book',
-    7: 'Count read books',
-    8: 'Lucky book',
-    9: 'Random quote',
-    10: 'Save database',
-    11: 'Exit'
+    7: 'Show read books',
+    8: 'Count read books',
+    9: 'Lucky book',
+    10: 'Random quote',
+    11: 'Save database',
+    12: 'Exit'
 }
 
 
@@ -128,20 +129,23 @@ while True:
                     print('Invalid option! Please select a correct number.')
                     time.sleep(2)
         elif option == 7:
+            database.show_read_books()
+            time.sleep(3)
+        elif option == 8:
             database.count()
             print('')
             time.sleep(3)
-        elif option == 8:
+        elif option == 9:
             database.pick_book()
             print('')
             time.sleep(3)
-        elif option == 9:
+        elif option == 10:
             database.print_quote()
             print('')
             time.sleep(3)
-        elif option == 10:
-            database.save()
         elif option == 11:
+            database.save()
+        elif option == 12:
             while True:
                 save = input('Do you want to save your database before leaving? [y/n]? ')
                 if save.lower() == 'y':
