@@ -1,8 +1,6 @@
 from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-import os
 import random
 
 GOODREADS_FRONTPAGE = 'https://www.goodreads.com/'

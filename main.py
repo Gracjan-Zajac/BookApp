@@ -52,16 +52,6 @@ class Book:
         else:
             self.rate = scale
 
-    def print_info(self):
-        """
-        Prints book's description from GoodReads website.
-        """
-        goodreads = GoodReads()
-        description = goodreads.get_info(self.title)
-        print(self.title + ', ' + self.author)
-        print('-----')
-        print(description)
-
 
 class BooksDatabase:
 
@@ -103,12 +93,6 @@ class BooksDatabase:
         """
         new_book = Book(title, author, year, genre, pages)
         self.books.append(new_book)
-
-    def delete_book(self, book):
-        """
-        Deletes a book from database.
-        """
-        self.books.remove(book)
 
     def count(self):
         """
@@ -156,4 +140,3 @@ class BooksDatabase:
         book_to_read = random.choice(to_read_list)
         print('Next book you should read is:')
         print('{} by {}'.format(book_to_read.title, book_to_read.author))
-

@@ -157,6 +157,3 @@ while True:
         else:
             print('Invalid option! Please enter a number between 1 and 12\n')
             time.sleep(2)
-
-# details = b.get_book_details()
-# b.add_new_book(details[0], details[1], details[2], details[3], details[4])

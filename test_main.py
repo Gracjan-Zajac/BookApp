@@ -2,7 +2,7 @@ import unittest
 from main import Book, BooksDatabase
 
 
-class TestBookMethods(unittest.TestCase):
+class TestClassBook(unittest.TestCase):
 
     def setUp(self) -> None:
         self.book = Book('Solaris', 'Stanislaw Lem', 1964, 'sci-fi', 300)
@@ -25,12 +25,11 @@ class TestBookMethods(unittest.TestCase):
 class TestBooksDatabase(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.my_books = BooksDatabase('my_books.json')
-        self.my_books.books = ['Gracjan']
+        self.my_database = BooksDatabase('test.json')
 
-    def test_deleting_from_database(self):
-        self.my_books.books.remove('Gracjan')
-        self.assertNotIn('Gracjan', self.my_books.books)
+    def test_add_new_book(self):
+        self.my_database.add_new_book('The Trial', 'Franz Kafka', 1925, 'absurd literature', 296)
+        self.assertIsInstance(self.my_database.books[0], Book)
 
 
 if __name__ == '__main__':
