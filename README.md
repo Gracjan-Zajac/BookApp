@@ -6,7 +6,7 @@ To start using it open `run.py` in your terminal.
 
 User is able to:
 * Add/delete books to a `.json` file and save it for the future
-* Print all books together with their details from json file
+* Print all books together with their details
 * Mark them as read/unread
 * Rate them
 * Count how many books (and pages) he/she has read so far
