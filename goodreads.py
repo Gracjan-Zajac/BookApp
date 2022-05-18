@@ -17,29 +17,6 @@ class GoodReads:
         assert opts.headless
         self.browser = Firefox(options=opts)
         self.browser.get(GOODREADS_FRONTPAGE)
-        self.browser.implicitly_wait(5)
-
-    def get_info(self, book):
-        """
-         Gets information about book from goodreads.com
-        """
-        search_field = self.browser.find_element(By.ID, 'sitesearch_field')
-        search_field.clear()
-        search_field.send_keys(book)
-        search_field.send_keys(Keys.RETURN)
-
-        result = self.browser.find_element(By.CLASS_NAME, 'bookTitle')
-        result.click()
-
-        if self.browser.find_element(By.XPATH, "//*[contains(text(), '...more')]"):
-            more = self.browser.find_element(By.XPATH, "//*[contains(text(), '...more')]")
-            more.click()
-
-        description = self.browser.find_element(By.ID, 'description').text
-        description = os.linesep.join([s for s in description.splitlines() if s])
-        description = description.replace('(less)', "")
-
-        return description
 
     def get_quote(self):
         """

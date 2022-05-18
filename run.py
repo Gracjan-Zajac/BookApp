@@ -10,12 +10,11 @@ menu_options = {
     4: 'Mark as read',
     5: 'Mark as unread',
     6: 'Rate a book',
-    7: 'Check book\'s description',
-    8: 'Count read books',
-    9: 'Lucky book',
-    10: 'Random quote',
-    11: 'Save database',
-    12: 'Exit'
+    7: 'Count read books',
+    8: 'Lucky book',
+    9: 'Random quote',
+    10: 'Save database',
+    11: 'Exit'
 }
 
 
@@ -112,7 +111,7 @@ while True:
                             time.sleep(2)
                 except (ValueError, IndexError):
                     print('Invalid option! Please select a correct number.')
-                    time.sleep(3)
+                    time.sleep(2)
 
         elif option == 6:
             while True:
@@ -123,10 +122,13 @@ while True:
                     user_choice = int(input('Your choice: '))
                     if user_choice == 0:
                         break
-                    elif user_choice != 0:
-                        pass
                     else:
-                        pass
+                        book = database.books[user_choice - 1]
+                        user_rate = int(input(f'How do you rate {book.title} in the scale from 1 to 5? '))
+                        book.add_rate(user_rate)
+                        print(f'{book.title} is now rated to {book.rate}\n')
+                        time.sleep(2)
+                        break
                 except (ValueError, IndexError):
                     print('Invalid option! Please select a correct number.')
                     time.sleep(2)
@@ -140,8 +142,6 @@ while True:
         elif option == 10:
             pass
         elif option == 11:
-            pass
-        elif option == 12:
             print('\nSee you again!')
             exit()
         else:

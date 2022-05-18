@@ -43,7 +43,7 @@ class Book:
         self.read = False
         self.rate = None
 
-    def add_rate(self, scale):
+    def add_rate(self, scale: int):
         """
         Rates the book in the scale 1-5
         """
